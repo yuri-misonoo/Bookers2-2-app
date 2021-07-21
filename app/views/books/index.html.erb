@@ -1,0 +1,32 @@
+<p id="notice"></p>
+<div class="containar">
+  <div class="row">
+    <div class="col-3">
+
+      <%= render 'users/left-bar', user: current_user, book: @book %>
+
+    </div>
+    <div class="col-8 offset-1">
+      <h2>Books</h2>
+      <table class="table table-hover table-inverse">
+        <thread>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+          </tr>
+        </thread>
+        <tbody>
+          <% @books.each do |book| %>
+          <tr>
+            <td><%= link_to (attachment_image_tag book.user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "50x50"), user_path(book.user_id) %></td>
+            <td><%= link_to book.title, book_path(book.user) %></td>
+            <td><%= book.body %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  
+  </div>
+</div>
