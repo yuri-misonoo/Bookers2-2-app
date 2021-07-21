@@ -1,6 +1,7 @@
 <div class="container mx-auto">
   <div class="row mx-auto">
     <div class="col-5 mx-auto">
+      <%= render "users/errors", user: @user %>
       <h1>User info</h1>
       <%= form_with model: @user, local: true do |f| %>
         <div class="form-group">

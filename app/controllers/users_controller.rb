@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :ensure_correct_user, only[:edit, :update]
 
   def index
     @book = Book.new
@@ -18,8 +19,19 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(@user.id)
+    if @user.update
+      redirect_to user_path(@user.id), notice: "You have updated user successfully"
+    else
+      render :edit
+    end
+    
+    def ensure_correct_user
+      @book = Book.find(params[:id])
+      unless @book.user = current_user
+        redirect_to books_path
+      end
+    end
+    
   end
   
   private

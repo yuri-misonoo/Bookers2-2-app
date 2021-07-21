@@ -55,6 +55,13 @@
       </nav>
     </header>
     
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    
+    <% if flash[:notice] %>
+　　  <%= flash[:notice] %>
+　　<% end %>
+    
     <main class="container mt-1">
      <%= yield %> 
     </main>
